@@ -85,7 +85,7 @@
     </record>
 
 
-    <menuitem name="Contacts"
+    <menuitem name="Mi agenda de Clientes"
         id="menu_contacts"
         sequence="20"
         web_icon="contacts,static/description/icon.png"
