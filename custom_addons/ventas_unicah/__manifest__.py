@@ -1,7 +1,7 @@
 {
-    "name": "Ventas UNICAH",
+    "name": "Tarea",
     "version": "1.0",
-    "summary": "Canal de venta y aprobación de pedidos grandes",
+    "summary": "Canal de venta y total de unidades",
     "category": "Sales/Sales",
     "author": "UNICAH",
     "depends": ["sale_management"],
