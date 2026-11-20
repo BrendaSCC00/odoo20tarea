@@ -6,6 +6,7 @@ COPY --chown=odoo:odoo odoo /opt/odoo-project/odoo
 COPY --chown=odoo:odoo addons /opt/odoo-project/addons
 COPY --chown=odoo:odoo custom_addons/ventas_unicah /mnt/extra-addons/ventas_unicah
 COPY --chown=odoo:odoo odoo-bin render_start.py /opt/odoo-project/
+RUN sed -i "s/elif self.url:/elif self.type == 'url' and self.url:/" /opt/odoo-project/odoo/addons/base/models/ir_attachment.py
 RUN mkdir -p /var/lib/odoo && chown -R odoo:odoo /var/lib/odoo
 USER odoo
 WORKDIR /opt/odoo-project
