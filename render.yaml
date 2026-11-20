@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: odoo-brendacuellar
+    runtime: docker
+    repo: https://github.com/BrendaSCC00/odoo20tarea
+    branch: practica
+    plan: free
+    region: oregon
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /web/login
+    autoDeployTrigger: off
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: odoo-brendacuellar-db
+          property: connectionString
+      - key: ODOO_ADMIN_PASSWORD
+        generateValue: true
+      - key: ODOO_MASTER_PASSWORD
+        generateValue: true
+      - key: ODOO_ADMIN_LOGIN
+        value: revision
+databases:
+  - name: odoo-brendacuellar-db
+    plan: free
+    region: oregon
+    databaseName: odoo_tarea
+    user: odoo
+    postgresMajorVersion: "18"
+    ipAllowList: []
