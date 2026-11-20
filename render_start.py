@@ -56,9 +56,9 @@ def write_config(settings, path):
 BOOTSTRAP = '''
 import os
 params = env['ir.config_parameter'].sudo()
-params.set_param('ir_attachment.location', 'db')
+params.set_str('ir_attachment.location', 'db')
 env['ir.attachment'].sudo().force_storage()
-if not params.get_param('tarea_nube.configurada'):
+if not params.get_str('tarea_nube.configurada'):
     admin = env.ref('base.user_admin')
     admin.write({
         'name': 'Revisión académica',
@@ -66,7 +66,7 @@ if not params.get_param('tarea_nube.configurada'):
         'password': os.environ['ODOO_ADMIN_PASSWORD'],
     })
     env.ref('base.main_company').write({'name': 'Odoo_BrendaCuellar'})
-    params.set_param('tarea_nube.configurada', '1')
+    params.set_str('tarea_nube.configurada', '1')
 env.cr.commit()
 print('Configuración de la tarea verificada.')
 '''
@@ -105,7 +105,7 @@ def main():
         print('Instalando la base y el módulo de la tarea.', flush=True)
         subprocess.run(command + [
             '-c', config_path, '-i', 'base,ventas_unicah',
-            '--without-demo=all', '--load-language=es_ES',
+            '--without-demo=True', '--load-language=es_ES',
             '--stop-after-init', '--no-http',
         ], check=True)
     subprocess.run(
