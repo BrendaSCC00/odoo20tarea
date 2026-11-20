@@ -1,6 +1,7 @@
 FROM odoo:20.0-20261112
 
 USER root
+RUN rm -rf /usr/lib/python3/dist-packages/odoo
 COPY --chown=odoo:odoo odoo /opt/odoo-project/odoo
 COPY --chown=odoo:odoo addons /opt/odoo-project/addons
 COPY --chown=odoo:odoo custom_addons/ventas_unicah /mnt/extra-addons/ventas_unicah
